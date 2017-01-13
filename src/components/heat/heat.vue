@@ -2,7 +2,7 @@
 
 <template lang="html">
 <div class="heat">
-  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
+  <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
   <div class="main"></div>
 </div>
 </template>

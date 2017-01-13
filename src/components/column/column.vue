@@ -5,19 +5,6 @@
   background url('../../assets/Bitmap.png') no-repeat;
   background-size 100% 100%
   color white
-  .title
-    display flex
-    height 50px
-    line-height 50px
-    background-color rgba(32, 32, 35, 0.2)
-    color white
-    h1
-      flex 0 0 120px
-      font-size 21px
-      font-weight bold
-      padding-left 20px
-    .legend-wrapper
-      margin-top -2px
   .filter
     padding 25px 0 0 20px
     font-size 12px

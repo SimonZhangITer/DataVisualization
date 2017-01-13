@@ -2,7 +2,7 @@
 
 <template lang="html">
 <div class="heat">
-  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
+  <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
   <div class="main"></div>
 </div>
 </template>
@@ -75,13 +75,7 @@ export default {
             }
           },
           legend: {
-            orient: 'vertical',
-            y: 'bottom',
-            x: 'right',
-            data: ['医院数量', '拜访次数', '信使人数'],
-            textStyle: {
-              color: '#fff'
-            }
+            show: false
           },
           visualMap: {
             min: 0,
@@ -101,6 +95,8 @@ export default {
                 show: false
               }
             },
+            zoom: 1.3,
+            top: 50,
             itemStyle: {
               normal: {
                 color: '#3c4247',

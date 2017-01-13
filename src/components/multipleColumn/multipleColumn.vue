@@ -1,64 +1,18 @@
-<!-- 层叠柱状图 -->
+<!-- 折线图 -->
 <style lang="stylus">
 .column
   height 800px
   background url('../../assets/Bitmap.png') no-repeat;
   background-size 100% 100%
   color white
-  .title
-    display flex
-    height 50px
-    line-height 50px
-    background-color rgba(32, 32, 35, 0.2)
-    color white
-    h1
-      flex 0 0 120px
-      font-size 21px
-      font-weight bold
-      padding-left 20px
-    .legend-wrapper
-      margin-top -2px
-  .filter
-    padding 25px 0 0 20px
-    font-size 12px
-    .startTime
-      display inline-block
-    .endTime
-      display inline-block
-      padding-left 42px
-    .text
-      opacity 0.69
-      padding-right 7px
-    .products
-      position absolute
-      display inline-block
-      right 36px
-      .arrow
-        position absolute
-        width 6px
-        height 6px
-        margin-left 10px
-        border-left 2px solid white
-        border-bottom 2px solid white
-        transform rotate(-45deg)
   .main
     height 400px
 </style>
 
 <template>
 <div class="column">
-  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
-  <div class="filter">
-    <div class="startTime">
-      <span class="text">起始时间</span>2012.04.12<i class="icon"></i>
-    </div>
-    <div class="endTime">
-      <span class="text">截止时间</span> 2022.04.12<i class="icon"></i>
-    </div>
-    <div class="products">
-      产品<i class="arrow"></i>
-    </div>
-  </div>
+  <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
+  <v-filter></v-filter>
   <div class="main"></div>
 </div>
 
@@ -67,14 +21,16 @@
 <script>
 import echarts from 'echarts'
 import header from 'components/header/header'
+import filter from 'components/filter/filter'
 
 export default {
   data() {
     return {
       legendArr: [],
       color: this.$store.state.color,
+      styleArr: [],
       myChart: {},
-      name: '信使任务'
+      name: '产品详情'
     }
   },
   methods: {
@@ -86,7 +42,8 @@ export default {
     }
   },
   components: {
-    'v-header': header
+    'v-header': header,
+    'v-filter': filter
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
@@ -123,7 +80,7 @@ export default {
             color: 'white'
           }
         },
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: ['产品1', '产品2', '产品3', '产品4', '产品5']
       }],
       yAxis: [{
         axisLine: {
@@ -132,6 +89,7 @@ export default {
         nameLocation: 'end',
         nameGap: 20,
         nameRotate: 0,
+        interval: 2,
         axisTick: {
           show: false
         },
@@ -153,30 +111,47 @@ export default {
         }
       }],
       series: [{
-        name: '邮件营销',
-        type: 'line',
-        stack: '总量',
-        data: [120, 132, 101, 134, 90, 230, 210]
+        name: '预算拜访',
+        stack: '拜访',
+        type: 'bar',
+        data: [2.0, 4.9, 5.9, 3, 6],
+        barWidth: 16,
+        barGap: 0
       }, {
-        name: '联盟广告',
-        type: 'line',
-        stack: '总量',
-        data: [220, 182, 191, 234, 290, 330, 310]
+        name: '预算阅读',
+        stack: '阅读',
+        type: 'bar',
+        data: [2.6, 5.9, 3.6, 6, 8],
+        barWidth: 16,
+        barGap: 0
       }, {
-        name: '视频广告',
-        type: 'line',
-        stack: '总量',
-        data: [150, 232, 201, 154, 190, 330, 410]
+        name: '预算调研',
+        stack: '调研',
+        type: 'bar',
+        data: [2.0, 6.4, 6.0, 4, 5],
+        barWidth: 16,
+        barGap: 0
       }, {
-        name: '直接访问',
-        type: 'line',
-        stack: '总量',
-        data: [320, 332, 301, 334, 390, 330, 320]
+        name: '实际拜访',
+        stack: '拜访',
+        type: 'bar',
+        data: [4.0, 5.9, 3, 3, 6],
+        barWidth: 16,
+        barGap: 0
       }, {
-        name: '搜索引擎',
-        type: 'line',
-        stack: '总量',
-        data: [820, 932, 901, 934, 1290, 1330, 1320]
+        name: '实际阅读',
+        stack: '阅读',
+        type: 'bar',
+        data: [5.6, 4.9, 6, 5, 5],
+        barWidth: 16,
+        barGap: 0
+      }, {
+        name: '实际调研',
+        stack: '调研',
+        type: 'bar',
+        data: [2.0, 3.4, 8],
+        barWidth: 16,
+        barGap: 0
       }]
     });
     this._init()
