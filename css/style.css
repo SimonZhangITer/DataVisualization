@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+
+.item {
+  padding: 0px;
+  margin: 0px;
+  width: 200px;
+  height: 90px;
+  line-height: 90px;
+  /*   -webkit-align-items: center;
+      align-items: center; */
+  text-align: center;
+  /*   transition: 2s width; */
+  /*   flex-grow: 2; */
+  /*   align-items:center;
+      -webkit-align-items: center; */
+  transition: all 1s ease-in;
+}
+
+body, html {
+  background-color: black;
+  margin: 0px;
+  padding: 0px;
+}
+
+.flex-container.column {
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 500px;
+  overflow: hidden;
+  display: flex;
+  display: -webkit-flex;
+  margin: 100px auto;
+  box-sizing: content-box;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  /*       align-items:flex-start;
+      -webkit-align-items: flex-start;
+      align-content: flex-start;
+      -webkit-align-content: flex-start;
+       */
+}
+
+.active {
+  /*     width:300px;
+      height: 100%; */
+  width: 300px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-left: 10px;
+  line-height: 300px;
+}
+
+.one {
+  order: 1;
+}
+
+.two {
+  order: 2;
+}
+
+.three {
+  order: 3;
+}
+
+.four {
+  order: 4
+}
