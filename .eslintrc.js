@@ -29,6 +29,7 @@ module.exports = {
     'no-unused-vars': 0,
     'no-undef': 0,
     'quotes': 0,
-    'no-dupe-keys':0
+    'no-dupe-keys': 0,
+    'null': 0
   }
 }

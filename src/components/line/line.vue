@@ -47,12 +47,7 @@
 
 <template>
 <div class="column">
-  <div class="title">
-    <h1>信使任务</h1>
-    <div class="legend-wrapper">
-      <legendBar :legendArr="legendArr" :myChart="myChart"></legendBar>
-    </div>
-  </div>
+  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
   <div class="filter">
     <div class="startTime">
       <span class="text">起始时间</span>2012.04.12<i class="icon"></i>
@@ -71,7 +66,7 @@
 
 <script>
 import echarts from 'echarts'
-import legendBar from 'components/legend/legend'
+import header from 'components/header/header'
 
 export default {
   data() {
@@ -79,7 +74,8 @@ export default {
       legendArr: [],
       color: this.$store.state.color,
       styleArr: [],
-      myChart: {}
+      myChart: {},
+      name: '产品详情'
     }
   },
   methods: {
@@ -91,7 +87,7 @@ export default {
     }
   },
   components: {
-    legendBar
+    'v-header': header
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例

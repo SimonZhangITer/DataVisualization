@@ -2,9 +2,7 @@
 
 <template lang="html">
 <div class="heat">
-  <div class="legend-wrapper">
-    <legendBar :legendArr="legendArr" :myChart="myChart"></legendBar>
-  </div>
+  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
   <div class="main"></div>
 </div>
 </template>
@@ -13,7 +11,7 @@
 import axios from 'axios'
 import echarts from 'echarts'
 import china from 'echarts/map/js/china'
-import legendBar from 'components/legend/legend'
+import header from 'components/header/header'
 
 export default {
   created() {
@@ -24,7 +22,8 @@ export default {
       legendArr: [],
       color: this.$store.state.color,
       myChart: {},
-      geoCoordMap: {}
+      geoCoordMap: {},
+      name: '热力图'
     }
   },
   methods: {
@@ -53,7 +52,7 @@ export default {
     }
   },
   components: {
-    legendBar
+    'v-header': header
   },
   mounted() {
     axios.get('static/data/heat/testData.json').then((res) => {

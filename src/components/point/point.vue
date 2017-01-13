@@ -2,9 +2,7 @@
 
 <template lang="html">
 <div class="heat">
-  <div class="legend-wrapper">
-    <legendBar :legendArr="legendArr" :myChart="myChart"></legendBar>
-  </div>
+  <header :name="name" :legendArr="legendArr" :myChart="myChart"></header>
   <div class="main"></div>
 </div>
 </template>
@@ -13,9 +11,7 @@
 import axios from 'axios'
 import echarts from 'echarts'
 import china from 'echarts/map/js/china'
-import legendBar from 'components/legend/legend'
-
-window.x = echarts
+import header from 'components/header/header'
 
 export default {
   created() {
@@ -26,7 +22,8 @@ export default {
       legendArr: [],
       color: this.$store.state.color,
       myChart: {},
-      geoCoordMap: {}
+      geoCoordMap: {},
+      name: '散点图'
     }
   },
   methods: {
@@ -48,12 +45,17 @@ export default {
     },
     convertData(data) {
       let res = [];
-      for (let i = 0; i < data.length; i++) {
-        let geoCoord = this.geoCoordMap[data[i].name];
+      for (let i = 0; i < 4; i++) {
+        let l = data.length
+        let x = parseInt(Math.random() * l)
+        let geoCoord = this.geoCoordMap[data[x].name]
+          // let geoCoord = this.geoCoordMap[data[i].name];
         if (geoCoord) {
           res.push({
-            name: data[i].name,
-            value: geoCoord.concat(data[i].value)
+            name: data[x].name,
+            // name: data[x].name,
+            value: geoCoord.concat(Math.random() * 200)
+              // value: geoCoord.concat(data[i].value)
           });
         }
       }
@@ -64,11 +66,7 @@ export default {
         let options = {
           // backgroundColor: '#404a59',
           title: {
-            text: '全国主要城市空气质量',
-            x: 'center',
-            textStyle: {
-              color: '#fff'
-            }
+            show: false
           },
           tooltip: {
             trigger: 'item',
@@ -80,7 +78,7 @@ export default {
             orient: 'vertical',
             y: 'bottom',
             x: 'right',
-            data: ['pm2.5'],
+            data: ['医院数量', '拜访次数', '信使人数'],
             textStyle: {
               color: '#fff'
             }
@@ -107,8 +105,7 @@ export default {
               normal: {
                 color: '#3c4247',
                 opacity: 0.25,
-                borderColor: 'rgba(255, 255, 255, 0.35)',
-                backgroundBlendMode: 'multiply'
+                borderColor: 'rgba(255, 255, 255, 0.35)'
               },
               emphasis: {
                 color: '#2a333d'
@@ -116,7 +113,51 @@ export default {
             }
           },
           series: [{
-            name: 'pm2.5',
+            name: '医院数量',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbolSize: function(val) {
+              return val[2] / 6;
+            },
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            itemStyle: {
+              emphasis: {
+                borderColor: '#fff',
+                borderWidth: 1
+              }
+            },
+            data: this.convertData(res.data)
+          }, {
+            name: '拜访次数',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            symbolSize: function(val) {
+              return val[2] / 6;
+            },
+            label: {
+              normal: {
+                show: false
+              },
+              emphasis: {
+                show: false
+              }
+            },
+            itemStyle: {
+              emphasis: {
+                borderColor: '#fff',
+                borderWidth: 1
+              }
+            },
+            data: this.convertData(res.data)
+          }, {
+            name: '信使人数',
             type: 'scatter',
             coordinateSystem: 'geo',
             symbolSize: function(val) {
@@ -144,7 +185,7 @@ export default {
     }
   },
   components: {
-    legendBar
+    'v-header': header
   }
 }
 

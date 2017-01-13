@@ -1,9 +1,14 @@
 <template lang="html">
-  <ul>
-    <li v-for="(legend,index) in legendArr" :style="styleArr[index]" @click="legendToggle(legend)">
-      {{legend.name}}
-    </li>
-  </ul>
+  <div class="title">
+    <h1>{{name}}</h1>
+    <div class="legend-wrapper">
+      <ul>
+        <li v-for="(legend,index) in legendArr" :style="styleArr[index]" @click="legendToggle(legend)">
+          {{legend.name}}
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -13,7 +18,8 @@ export default {
       type: Array,
       default: []
     },
-    myChart: Object
+    myChart: Object,
+    name: String
   },
   created() {
     this._init()
