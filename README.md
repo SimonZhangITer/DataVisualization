@@ -1,6 +1,8 @@
-# y
+# 数据可视化
 
-> vue Demo
+> 使用vue2.0框架，echarts图表开发柱状图，散点图，热力图，折线图，dashboard等
+
+![](https://static.oschina.net/uploads/space/2017/0113/153450_GtuL_2493500.png)
 
 ## Build Setup
 
@@ -14,5 +16,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
