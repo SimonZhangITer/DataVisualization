@@ -2,7 +2,7 @@
 
 > 使用vue2.0框架，echarts图表开发柱状图，散点图，热力图，折线图，dashboard等
 
-!['预览'](https://static.oschina.net/uploads/space/2017/0113/153450_GtuL_2493500.png)
+!['预览'](https://github.com/SimonZhangITer/DataVisualization/blob/master/static/img/screenshot.png?raw=true)
 
 ## Build Setup
 
