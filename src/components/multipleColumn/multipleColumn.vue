@@ -12,7 +12,7 @@
 <template>
 <div class="column">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
-  <v-filter></v-filter>
+  <v-filter :myChart="myChart" v-if="myChart._dom"></v-filter>
   <div class="main"></div>
 </div>
 
@@ -37,8 +37,16 @@ export default {
     _init() {
       this.legendArr = this.myChart.getOption().series
       this.legendArr.forEach((data) => {
-        data.seleted = true;
+        data.selected = true;
       })
+    }
+  },
+  computed: {
+    chartInit() {
+      if (this.myChart.getOption) {
+        return true
+      }
+      return false
     }
   },
   components: {
@@ -47,7 +55,7 @@ export default {
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.main'));
+    this.myChart = echarts.init(document.querySelector('.main'))
     this.myChart.setOption({
       title: {
         show: false

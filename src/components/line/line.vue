@@ -5,29 +5,6 @@
   background url('../../assets/Bitmap.png') no-repeat;
   background-size 100% 100%
   color white
-  .filter
-    padding 25px 0 0 20px
-    font-size 12px
-    .startTime
-      display inline-block
-    .endTime
-      display inline-block
-      padding-left 42px
-    .text
-      opacity 0.69
-      padding-right 7px
-    .products
-      position absolute
-      display inline-block
-      right 36px
-      .arrow
-        position absolute
-        width 6px
-        height 6px
-        margin-left 10px
-        border-left 2px solid white
-        border-bottom 2px solid white
-        transform rotate(-45deg)
   .main
     height 400px
 </style>

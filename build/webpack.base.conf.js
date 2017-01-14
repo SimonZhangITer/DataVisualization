@@ -39,7 +39,7 @@ module.exports = {
       test: /\.vue$/,
       loader: 'eslint',
       include: projectRoot,
-      exclude: /node_modules/
+      exclude: /node_modules|src\/components\/calendar/
     }],
     loaders: [{
       test: /\.vue$/,
