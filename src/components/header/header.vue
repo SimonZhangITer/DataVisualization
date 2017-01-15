@@ -77,6 +77,7 @@ export default {
 
 <style lang="stylus">
 .title
+  position relative
   display flex
   height 50px
   line-height 50px

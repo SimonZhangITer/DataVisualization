@@ -1,4 +1,7 @@
 <style lang="stylus" rel="stylesheet/stylus">
+router-view
+  height 100%
+  width 100%
 </style>
 
 <template>

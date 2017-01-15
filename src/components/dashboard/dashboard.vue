@@ -1,7 +1,9 @@
 <template lang="html">
   <div class="dashboard">
     <div class="flex-container column" id="direction" @click="clickChart($event)">
-        <div class="item one" data-color="2a80b9">1</div>
+        <div class="item one" data-color="2a80b9">
+          <column></column>
+        </div>
         <div class="item two" data-color="8f44ad">2</div>
         <div class="item three" data-color="16a086">3</div>
         <div class="item four active" data-color="f1c40f">4</div>
@@ -10,6 +12,8 @@
 </template>
 
 <script>
+import column from 'components/column/column'
+
 export default {
   mounted() {
     if (!window.StyleHelpers) {
@@ -89,6 +93,9 @@ export default {
         //      StyleHelpers.applyTransformStyle(selected,"translate("+(activeStyle.center_x-selectedStyle.center_x)+"px,"+(activeStyle.center_y-selectedStyle.center_y)+"px)");
       }
     }
+  },
+  components: {
+    column
   }
 }
 
@@ -117,6 +124,8 @@ export default {
 }
 
 .dashboard {
+    width 100%
+    height 100%
     background-color: black;
     margin:0px;
     padding:0px;
@@ -144,8 +153,6 @@ export default {
 }
 
 .active {
-    /*     width:300px;
-      height: 100%; */
     width: 300px;
     flex-grow: 1;
     flex-shrink:0;
