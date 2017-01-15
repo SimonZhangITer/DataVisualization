@@ -59,4 +59,4 @@ new Vue({
   }
 }).$mount('#app')
 
-router.push('multipleColumn')
+router.push('dashboard')

@@ -81,7 +81,7 @@
     </div>
     <div class="pro_list" v-show="pro_filter_flag">
       <ul>
-        <li v-for="(pro,index) in pro_list" @click="selectPro(pro,index)"><checkbox :isChecked="pro.selected"></checkbox><span class="name">{{pro.name}}</span></li>
+        <li v-for="(pro,index) in pro_list" @click="pro_toggle(pro,index)"><checkbox :isChecked="pro.selected"></checkbox><span class="name">{{pro.name}}</span></li>
       </ul>
     </div>
   </div>
@@ -107,14 +107,18 @@ export default {
       endDate: '2016.01.15',
       pro_filter_flag: false,
       selectAll_flag: true,
-      pro_list: []
+      pro_list: [],
+      option: {},
+      resetOption: {} // 存储最开始的数据
     }
   },
   mounted() {
-    this._init();
+    this._init()
   },
   methods: {
     _init() {
+      this.option = this.myChart.getOption()
+      this.resetOption = this._deepCopy(this.myChart.getOption())
       this._initProList()
       $('.startTime .calendar').calendar({
         trigger: '.startDate',
@@ -135,17 +139,50 @@ export default {
     },
     _initProList() {
       let arr = []
-      this.myChart.getOption().xAxis[0].data.forEach((pro) => {
+      this.option.xAxis[0].data.forEach((pro, index) => {
         arr.push({
           name: pro,
-          selected: true
+          selected: true,
+          data: this.option.series[index].data
         })
       })
       this.pro_list = arr
     },
-    selectPro(pro, index) {
-      pro.selected = !pro.selected;
-      this.selectAll_flag = this.isSelectAll();
+    _deepCopy(obj) {
+      let str, newobj;
+      str = newobj = obj.constructor === Array ? [] : {};
+      if (typeof obj !== 'object') {
+        return
+      } else if (window.JSON) {
+        str = JSON.stringify(obj) // 系列化对象
+        newobj = JSON.parse(str) // 还原
+      } else {
+        for (var i in obj) {
+          newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i];
+        }
+      }
+      return newobj;
+    },
+    pro_toggle(pro, index) {
+      pro.selected = !pro.selected
+      this.selectAll_flag = this.isSelectAll()
+      this.redraw()
+    },
+    redraw() {
+      console.log(this.resetOption.series[0].data);
+      let option = this._deepCopy(this.resetOption)
+      let count = 0
+      this.pro_list.forEach((pro, index) => {
+        index = index - count
+        if (!pro.selected) {
+          option.xAxis[0].data.splice(index, 1)
+          option.series.forEach((obj) => {
+            obj.data.splice(index, 1)
+          })
+          count++
+        }
+      })
+      this.myChart.setOption(option)
     },
     isSelectAll() {
       let flag = true
@@ -161,6 +198,7 @@ export default {
       this.pro_list.forEach((pro) => {
         pro.selected = this.selectAll_flag
       })
+      this.redraw()
     },
     showProPane() {
       this.pro_filter_flag = !this.pro_filter_flag

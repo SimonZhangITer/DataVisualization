@@ -52,7 +52,7 @@ export default {
       })
     },
     legendToggle(legend) {
-      legend.seleted = !legend.seleted
+      legend.selected = !legend.selected
       this.myChart.dispatchAction({
         type: 'legendToggleSelect',
         name: legend.name
@@ -61,9 +61,9 @@ export default {
     },
     changeStyle() {
       this.legendArr.forEach((data, index) => {
-        if (data.seleted) {
+        if (data.selected) {
           this.styleArr[index].background = this.color[index]
-          this.styleArr[index].border = '1px solid' + this.color[index];
+          this.styleArr[index].border = '1px solid' + this.color[index]
         } else {
           this.styleArr[index].background = 'transparent'
           this.styleArr[index].border = '1px solid #9C8C84'
