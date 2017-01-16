@@ -1,7 +1,14 @@
 <style lang="stylus">
 .filter
-  padding 25px 0 0 20px
+  position relative
+  display flex
+  padding 10px 0 0 28px
   font-size 12px
+  line-height 11px
+  color white
+  z-index 9999
+  .myCalendar
+    left auto!important
   input
     background none
     border none
@@ -43,7 +50,7 @@
     text-align left
     background #493F3D
     font-size 14px
-    margin-top 8px
+    margin-top 22px
     max-height 180px
     overflow hidden
     z-index 9
@@ -58,17 +65,17 @@
         display inline-block
         right 8px
 </style>
-<template lang="html">
+<template lang="html" scoped>
   <div class="filter">
     <div class="startTime">
       <span class="timeText">起始时间</span>
-      <input type="text" class="startDate" placeholder="trigger calendar" :value="startDate">
-      <div class="calendar"></div>
+      <input type="text" class="startDate" :value="startDate">
+      <div class="myCalendar"></div>
     </div>
     <div class="endTime">
       <span class="timeText">截止时间</span>
-      <input type="text" class="endDate" placeholder="trigger calendar" :value="endDate">
-      <div class="calendar"></div>
+      <input type="text" class="endDate" :value="endDate">
+      <div class="myCalendar"></div>
     </div>
     <div class="products">
       <div class="all" @click="selectAll()" v-show="pro_filter_flag">
@@ -92,7 +99,6 @@ import $ from 'jquery'
 import './assets/calendar.js'
 import './assets/calendar.css'
 import checkbox from 'components/checkbox/checkbox'
-import Vue from 'vue'
 
 export default {
   props: {
@@ -119,17 +125,16 @@ export default {
     _init() {
       this.option = this.myChart.getOption()
       this.resetOption = this._deepCopy(this.myChart.getOption())
-      this._initProList()
-      $('.startTime .calendar').calendar({
-        trigger: '.startDate',
+      $('.' + this.$parent.$el._prevClass + ' .startTime .myCalendar').calendar({
+        trigger: '.' + this.$parent.$el._prevClass + ' .startDate',
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
           console.log(date)
         }
       })
-      $('.endTime .calendar').calendar({
-        trigger: '.endDate',
+      $('.' + this.$parent.$el._prevClass + ' .endTime .myCalendar').calendar({
+        trigger: '.' + this.$parent.$el._prevClass + ' .endDate',
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
@@ -139,14 +144,16 @@ export default {
     },
     _initProList() {
       let arr = []
-      this.option.xAxis[0].data.forEach((pro, index) => {
-        arr.push({
-          name: pro,
-          selected: true,
-          data: this.option.series[index].data
+      if (this.option.xAxis) {
+        this.option.xAxis[0].data.forEach((pro, index) => {
+          arr.push({
+            name: pro,
+            selected: true,
+            data: this.option.series[index].data
+          })
         })
-      })
-      this.pro_list = arr
+        this.pro_list = arr
+      }
     },
     _deepCopy(obj) {
       let str, newobj;

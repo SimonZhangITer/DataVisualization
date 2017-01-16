@@ -1,11 +1,12 @@
 <style lang="stylus" rel="stylesheet/stylus">
-router-view
+.mainApp
+  position absolute
   height 100%
   width 100%
 </style>
 
 <template>
-<div>
+<div class="mainApp">
   <!-- <div class="tab">
     <div class="tab-item">
       <router-link to="/dashboard">Go to dashboard</router-link>
@@ -23,7 +24,7 @@ router-view
       <router-link to="/point">Go to point</router-link>
     </div>
   </div> -->
-  <router-view></router-view>
+  <router-view class="router-view"></router-view>
 </div>
 
 </template>

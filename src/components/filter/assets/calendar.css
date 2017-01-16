@@ -9,7 +9,7 @@
 
 .calendar-modal {
   display: none;
-  position: absolute;
+  position: fixed;
   background: #fdfdfd;
   border: 1px solid #e8e8e8;
   box-shadow: 1px 2px 3px #ddd

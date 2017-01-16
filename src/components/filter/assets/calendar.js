@@ -1,10 +1,3 @@
-/**
- *
- * @authors yusen
- * @date    2016-01-08 11:17:59
- * https://github.com/yscoder/Calendar
- * download by www.sucaijiayuan.com
- */
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define('calendar', ['jquery'], factory);

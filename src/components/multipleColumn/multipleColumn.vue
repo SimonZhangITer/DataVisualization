@@ -1,16 +1,18 @@
 <!-- 折线图 -->
 <style lang="stylus">
-.column
-  height 800px
-  background url('../../assets/Bitmap.png') no-repeat;
+.multipleColumn
+  height 100%
+  width 100%
+  background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   color white
   .main
-    height 400px
+    width 100%
+    height calc(100% - 100px)
 </style>
 
 <template>
-<div class="column">
+<div class="multipleColumn">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
   <v-filter :myChart="myChart" v-if="myChart._dom"></v-filter>
   <div class="main"></div>
@@ -55,7 +57,7 @@ export default {
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.main'))
+    this.myChart = echarts.init(document.querySelector('.multipleColumn .main'))
     this.myChart.setOption({
       title: {
         show: false
@@ -162,6 +164,7 @@ export default {
         barGap: 0
       }]
     });
+    window.onresize = this.myChart.resize
     this._init()
   }
 }

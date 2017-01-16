@@ -83,6 +83,7 @@ export default {
   line-height 50px
   background-color rgba(32, 32, 35, 0.2)
   color white
+  width 100%
   h1
     flex 0 0 120px
     font-size 21px

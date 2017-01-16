@@ -1,8 +1,18 @@
 <!-- 散点图 -->
+<style lang="stylus">
+.point
+  height 100%
+  background url('../../assets/Bitmap.png') no-repeat;
+  background-size 100% 100%
+  .main
+    height calc(100% - 120px)
+    width 100%
+</style>
 
 <template lang="html">
-<div class="heat">
+<div class="point">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
+  <v-filter :myChart="myChart" v-if="myChart._dom"></v-filter>
   <div class="main"></div>
 </div>
 </template>
@@ -12,6 +22,7 @@ import axios from 'axios'
 import echarts from 'echarts'
 import china from 'echarts/map/js/china'
 import header from 'components/header/header'
+import filter from 'components/filter/filter'
 
 export default {
   created() {
@@ -28,11 +39,11 @@ export default {
   },
   methods: {
     _init(options) {
-      this.myChart = echarts.init(document.querySelector('.main'))
+      this.myChart = echarts.init(document.querySelector('.point .main'))
       this.myChart.setOption(options)
       this.legendArr = options.series
       this.legendArr.forEach((data) => {
-        data.seleted = true;
+        data.selected = true;
       })
     },
     _getCityData() {
@@ -80,6 +91,7 @@ export default {
           visualMap: {
             min: 0,
             max: 200,
+            bottom: 50,
             splitNumber: 5,
             inRange: {
               color: ['#255B78', '#2A7484', '#2F9696', '#3BBCB0', '#51D4EB']
@@ -95,7 +107,7 @@ export default {
                 show: false
               }
             },
-            zoom: 1.3,
+            zoom: 1,
             top: 50,
             itemStyle: {
               normal: {
@@ -176,22 +188,15 @@ export default {
             data: this.convertData(res.data)
           }]
         }
+        window.onresize = this.myChart.resize
         this._init(options)
       });
     }
   },
   components: {
-    'v-header': header
+    'v-header': header,
+    'v-filter': filter
   }
 }
 
 </script>
-
-<style lang="stylus">
-.heat
-  height 800px
-  background url('../../assets/Bitmap.png') no-repeat;
-  background-size 100% 100%
-  .main
-    height 400px
-</style>

@@ -1,28 +1,20 @@
 <!-- 柱状图 -->
 <style lang="stylus">
-.column
-  height 800px
-  background url('../../assets/Bitmap.png') no-repeat;
+.columnChart
+  height 100%
+  width 100%
+  background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   color white
   .main
-    height 400px
+    width 100%
+    height 100%
 </style>
 
 <template>
-<div class="column">
+<div class="columnChart">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
-  <div class="filter">
-    <div class="startTime">
-      <span class="text">起始时间</span>2012.04.12<i class="icon"></i>
-    </div>
-    <div class="endTime">
-      <span class="text">截止时间</span> 2022.04.12<i class="icon"></i>
-    </div>
-    <div class="products">
-      产品<i class="arrow"></i>
-    </div>
-  </div>
+  <v-filter :myChart="myChart" v-if="myChart._dom"></v-filter>
   <div class="main"></div>
 </div>
 
@@ -31,6 +23,7 @@
 <script>
 import echarts from 'echarts'
 import header from 'components/header/header'
+import filter from 'components/filter/filter'
 
 export default {
   data() {
@@ -45,16 +38,17 @@ export default {
     _init() {
       this.legendArr = this.myChart.getOption().series
       this.legendArr.forEach((data) => {
-        data.seleted = true;
+        data.selected = true;
       })
     }
   },
   components: {
-    'v-header': header
+    'v-header': header,
+    'v-filter': filter
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.myChart = echarts.init(document.querySelector('.main'));
+    this.myChart = echarts.init(document.querySelector('.columnChart .main'));
     this.myChart.setOption({
       title: {
         show: false
@@ -155,6 +149,7 @@ export default {
         barGap: 0
       }]
     });
+    window.onresize = this.myChart.resize
     this._init()
   }
 }

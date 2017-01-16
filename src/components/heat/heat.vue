@@ -28,11 +28,11 @@ export default {
   },
   methods: {
     _init(options) {
-      this.myChart = echarts.init(document.querySelector('.main'))
+      this.myChart = echarts.init(document.querySelector('.heat .main'))
       this.myChart.setOption(options)
       this.legendArr = options.series
       this.legendArr.forEach((data) => {
-        data.seleted = true;
+        data.selected = true;
       })
     },
     _getCityData() {
@@ -101,6 +101,7 @@ export default {
           data: this.convertData(res.data)
         }]
       }
+      window.onresize = this.myChart.resize
       this._init(options)
     });
   }
