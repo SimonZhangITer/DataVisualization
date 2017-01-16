@@ -45,6 +45,7 @@ export default {
       this.legendArr.forEach((data) => {
         data.selected = true;
       })
+      window.onresize = this.myChart.resize
     },
     _getCityData() {
       axios.get('static/data/cityData.json').then((res) => {
@@ -188,7 +189,6 @@ export default {
             data: this.convertData(res.data)
           }]
         }
-        window.onresize = this.myChart.resize
         this._init(options)
       });
     }

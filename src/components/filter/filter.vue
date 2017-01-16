@@ -115,7 +115,7 @@ export default {
       selectAll_flag: true,
       pro_list: [],
       option: {},
-      resetOption: {} // 存储最开始的数据
+      resetOption: {} // 存储最开始的数据,
     }
   },
   mounted() {
@@ -125,6 +125,7 @@ export default {
     _init() {
       this.option = this.myChart.getOption()
       this.resetOption = this._deepCopy(this.myChart.getOption())
+      this._initProList()
       $('.' + this.$parent.$el._prevClass + ' .startTime .myCalendar').calendar({
         trigger: '.' + this.$parent.$el._prevClass + ' .startDate',
         zIndex: 999,
@@ -138,13 +139,19 @@ export default {
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
-          console.log(date)
-        }
+          this.selectAll()
+          this.redraw()
+          setTimeout(() => {
+            this.selectAll()
+            this.redraw()
+          }, 100)
+        }.bind(this)
       })
     },
     _initProList() {
       let arr = []
-      if (this.option.xAxis) {
+      let parentClass = this.$parent.$el._prevClass
+      if (parentClass === 'multipleColumn' || parentClass === 'columnChart') {
         this.option.xAxis[0].data.forEach((pro, index) => {
           arr.push({
             name: pro,
@@ -176,7 +183,6 @@ export default {
       this.redraw()
     },
     redraw() {
-      console.log(this.resetOption.series[0].data);
       let option = this._deepCopy(this.resetOption)
       let count = 0
       this.pro_list.forEach((pro, index) => {

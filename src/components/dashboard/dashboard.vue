@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div class="flex-container column" id="direction" @click="clickChart($event)">
         <div class="item one">
-          <multipleColumn></multipleColumn>
+          <point></point>
         </div>
         <div class="item two">
           <column></column>
@@ -11,7 +11,7 @@
           <v-line></v-line>
         </div>
         <div class="item four active">
-          <point></point>
+          <multipleColumn></multipleColumn>
         </div>
     </div>
   </div>

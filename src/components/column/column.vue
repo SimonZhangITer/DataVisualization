@@ -149,7 +149,6 @@ export default {
         barGap: 0
       }]
     });
-    window.onresize = this.myChart.resize
     this._init()
   }
 }
