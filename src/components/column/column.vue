@@ -40,6 +40,7 @@ export default {
       this.legendArr.forEach((data) => {
         data.selected = true;
       })
+      this.$root.charts.push(this.myChart)
       window.addEventListener('resize', function() {
         this.myChart.resize()
       }.bind(this))

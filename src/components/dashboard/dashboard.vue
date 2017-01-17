@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="dashboard">
-    <div class="flex-container column" id="direction" @click="clickChart($event)">
-        <div class="item one">
+    <div class="flex-container column" id="direction">
+        <div class="item one" @click="clickChart('1')" data-top="-9%">
           <multipleColumn></multipleColumn>
         </div>
-        <div class="item two">
+        <div class="item two" @click="clickChart('2')" data-top="25%">
           <column></column>
         </div>
-        <div class="item three">
+        <div class="item three" @click="clickChart('3')" data-top="59%">
           <v-line></v-line>
         </div>
-        <div class="item four active">
+        <div class="item four active" @click="clickChart('4')" data-top="0">
           <point></point>
         </div>
     </div>
@@ -23,41 +23,98 @@ import line from 'components/line/line'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
 import point from 'components/point/point'
 
+const ACTIVE_STYLE = {
+  top: '0',
+  left: '30%',
+  width: '68%',
+  height: '100%',
+  marginLeft: '10px',
+  transform: 'scale(1)'
+}
+
+let NORMAL_STYLE = {
+  left: '-3%',
+  width: '40%',
+  height: '50%',
+  marginLeft: '0',
+  transform: 'scale(0.65)'
+}
+
 export default {
-  mounted() {
-    if (!window.StyleHelpers) {
-      var StyleHelpers = (function() {
-        var applyElementStyle = function(element, styleObj) {
-          Object.keys(styleObj).forEach(function(key) {
-            if (element.style[key] !== +styleObj[key]) {
-              element.style[key] = styleObj[key];
-            }
-          })
-        };
-        var applyTransformStyle = function(element, transformValue) {
-          var styleObject = {};
-          ['webkit', ''].forEach(function(prefix) {
-            styleObject[prefix + 'Transform'] = transformValue;
-          });
-          applyElementStyle(element, styleObject);
-        };
-        return {
-          applyElementStyle: applyElementStyle,
-          applyTransformStyle: applyTransformStyle
-        }
-      })();
-      window.StyleHelpers = StyleHelpers;
+  data() {
+    return {
+      items: []
     }
-    // items[i].style.backgroundColor = 'rgba(32, 32, 35, 0.2)'
+  },
+  mounted() {
+    this._init()
+      // if (!window.StyleHelpers) {
+      //   var StyleHelpers = (function() {
+      //     var applyElementStyle = function(element, styleObj) {
+      //       Object.keys(styleObj).forEach(function(key) {
+      //         if (element.style[key] !== +styleObj[key]) {
+      //           element.style[key] = styleObj[key];
+      //         }
+      //       })
+      //     };
+      //     var applyTransformStyle = function(element, transformValue) {
+      //       var styleObject = {};
+      //       ['webkit', ''].forEach(function(prefix) {
+      //         styleObject[prefix + 'Transform'] = transformValue;
+      //       });
+      //       applyElementStyle(element, styleObject);
+      //     };
+      //     return {
+      //       applyElementStyle: applyElementStyle,
+      //       applyTransformStyle: applyTransformStyle
+      //     }
+      //   })();
+      //   window.StyleHelpers = StyleHelpers;
+      // }
+      // items[i].style.backgroundColor = 'rgba(32, 32, 35, 0.2)'
   },
   methods: {
-    clickChart(e) {
+    _resize() {
+      this.$root.charts.forEach((myChart) => {
+        myChart.resize()
+      })
+    },
+    _init() {
+      this.items = document.querySelectorAll('.item')
+      this.items.forEach((item, index) => {
+        item.dataset.order = index + 1;
+      })
+    },
+    clickChart(clickIndex) {
+      if (clickIndex) {
+        return
+      }
+      let activeItem = document.querySelector('.active')
+      let activeIndex = activeItem.dataset.order
+      let clickItem = this.items[clickIndex - 1]
+      if (activeIndex === clickIndex) {
+        return
+      }
+      NORMAL_STYLE.top = clickItem.dataset.top
+      activeItem.classList.remove('active')
+      clickItem.classList.add('active')
+      this._setStyle(clickItem, ACTIVE_STYLE)
+      this._setStyle(activeItem, NORMAL_STYLE)
+        // setTimeout(() => {
+        //   this._resize()
+        // }, 700)
+    },
+    _setStyle(el, style) {
+      for (let css in style) {
+        if (style.hasOwnProperty(css)) {
+          el.style[css] = style[css]
+        }
+      }
+    },
+    clickChart2(e) {
       var _arr = Array.prototype.slice.call(e.target.classList);
       var selected = e.target;
       var active = document.querySelector(".active");
-      if (active) {
-        return
-      }
       if (_arr.indexOf("active") < 0) {
         var selectedStyle = window.getComputedStyle(selected);
         var selectedOrder = selectedStyle.getPropertyValue("order");
@@ -140,7 +197,7 @@ export default {
     /*   flex-grow: 2; */
     /*   align-items:center;
       -webkit-align-items: center; */
-    transition:all 1s ease-in;
+    transition:all 0.7s ease-in;
     background rgba(32, 32, 35, 0.2)
 }
 
@@ -181,9 +238,9 @@ export default {
 .active {
     height 100%
     width: 68%;
+    left 30%
     flex-grow: 1;
     flex-shrink:0;
-    left 30%
     margin-left: 10px;
     line-height: 300px;
 }
