@@ -45,7 +45,9 @@ export default {
       this.legendArr.forEach((data) => {
         data.selected = true;
       })
-      window.onresize = this.myChart.resize
+      window.addEventListener('resize', function() {
+        this.myChart.resize()
+      }.bind(this))
     },
     _getCityData() {
       axios.get('static/data/cityData.json').then((res) => {

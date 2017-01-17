@@ -40,6 +40,9 @@ export default {
       this.legendArr.forEach((data) => {
         data.selected = true;
       })
+      window.addEventListener('resize', function() {
+        this.myChart.resize()
+      }.bind(this))
     }
   },
   components: {
