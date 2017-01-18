@@ -1,14 +1,14 @@
 <!-- 柱状图 -->
-<style lang="stylus">
+<style lang="stylus" scoped>
 .columnChart
-  height 100%
-  width 100%
+  height 800px
   background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   color white
   .main
     width 100%
-    height 100%
+    height calc(100% - 30px)
+    margin-top -15px
 </style>
 
 <template>

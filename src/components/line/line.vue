@@ -1,10 +1,9 @@
 <!-- 层叠柱状图 -->
-<style lang="stylus">
+<style lang="stylus" scoped>
 .line
   height 800px
-  background url('../../assets/Bitmap.png') no-repeat;
+  background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
-  color white
   .main
     height 400px
 </style>

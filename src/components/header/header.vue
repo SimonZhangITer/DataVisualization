@@ -75,7 +75,7 @@ export default {
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .title
   position relative
   display flex

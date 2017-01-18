@@ -1,11 +1,8 @@
 <!-- 折线图 -->
-<style lang="stylus">
+<style lang="stylus" scoped>
 .multipleColumn
-  height 100%
-  width 100%
-  background url('../../assets/Bitmap.png') no-repeat
+  background url('../../assets/Bitmap.png') no-repeat!important
   background-size 100% 100%
-  color white
   .main
     width 100%
     height calc(100% - 100px)

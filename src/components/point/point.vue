@@ -1,12 +1,12 @@
 <!-- 散点图 -->
-<style lang="stylus">
+<style lang="stylus" scoped>
 .point
-  height 100%
-  background url('../../assets/Bitmap.png') no-repeat;
+  background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   .main
     height calc(100% - 120px)
     width 100%
+    transition all 0.5s linear
 </style>
 
 <template lang="html">
@@ -23,6 +23,11 @@ import echarts from 'echarts'
 import china from 'echarts/map/js/china'
 import header from 'components/header/header'
 import filter from 'components/filter/filter'
+
+const USER_NAME = 'elastic'
+const PSW = 'elasticl@ethical.cn'
+const AUTH_TOKEN = "Basic " + btoa(USER_NAME + ":" + PSW)
+
 
 export default {
   created() {

@@ -1,4 +1,4 @@
-<style lang="stylus">
+<style lang="stylus" scoped>
 .filter
   position relative
   display flex
@@ -139,13 +139,13 @@ export default {
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
-          this.selectAll()
-          this.redraw()
-          setTimeout(() => {
-            this.selectAll()
-            this.redraw()
-          }, 100)
-        }.bind(this)
+          // this.selectAll()
+          // this.redraw()
+          // setTimeout(() => {
+          //   this.selectAll()
+          //   this.redraw()
+          // }, 100)
+        }
       })
     },
     _initProList() {

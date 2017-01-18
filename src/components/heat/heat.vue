@@ -1,5 +1,4 @@
 <!-- 散点图 -->
-
 <template lang="html">
 <div class="heat">
   <v-header :name="name" :legendArr="legendArr" :myChart="myChart"></v-header>
@@ -109,7 +108,7 @@ export default {
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .heat
   height 800px
   .main

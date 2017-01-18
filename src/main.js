@@ -8,7 +8,13 @@ import heat from 'components/heat/heat'
 import point from 'components/point/point'
 import dashboard from 'components/dashboard/dashboard'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
+import axios from 'axios'
 
+const USER_NAME = 'elastic'
+const PSW = 'elasticl@ethical.cn'
+const AUTH_TOKEN = "Basic " + btoa(USER_NAME + ":" + PSW)
+
+axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
 Vue.use(VueRouer)
 Vue.use(Vuex)
 
@@ -54,4 +60,4 @@ new Vue({
   }
 }).$mount('#app')
 
-router.push('dashboard')
+router.push('column')

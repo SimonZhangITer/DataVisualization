@@ -93,6 +93,19 @@ export default {
       let activeIndex = activeItem.dataset.order
       let clickItem = this.items[clickIndex - 1]
       if (activeIndex === clickIndex) {
+        // this._setStyle(activeItem, {
+        //   width: '40%',
+        //   height: '50%',
+        //   left: '0',
+        //   transform: 'scale(0.65)'
+        // })
+        // setTimeout(() => {
+        //   this._setStyle(activeItem.querySelector('.main'), {
+        //     top: '-24%',
+        //     left: '-18%',
+        //     transform: 'scale(0.46)'
+        //   })
+        // }, 300)
         return
       }
       NORMAL_STYLE.top = clickItem.dataset.top
@@ -168,28 +181,29 @@ export default {
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 * {
     box-sizing: border-box;
 }
 
 .point,.multipleColumn,.columnChart,.line
-  height 100%!important
+  height 100%
   width 100%
-  background none!important
+  background none
   .main
-    width 100%!important
-    height calc(100% - 30px)!important
+    width 100%
+    height calc(100% - 30px)
     margin-top -15px
 
 .item {
     padding: 0px;
     margin: 0px;
-    /*width: 31%;
-    height: 32%;*/
     width: 40%;
     height: 50%;
+    /*width: 68%;
+    height: 100%;*/
     position absolute
+    transform scale(0.65)
     /*   -webkit-align-items: center;
       align-items: center; */
     text-align: center;
@@ -243,29 +257,27 @@ export default {
     flex-shrink:0;
     margin-left: 10px;
     line-height: 300px;
+    transform scale(1)
 }
 
 .one {
     top: -9%;
     left: -3%;
     order: 1;
-    transform scale(0.65)
 }
 
 .two {
-    top: 25%!important;
+    top: 25%!important
     left: -3%;
     top 127px
     order: 2;
-    transform scale(0.65)
 }
 
 .three {
-    top: 59%!important;
+    top: 59%!important
     left: -3%;
     top 350px
     order: 3;
-    transform scale(0.65)
 }
 
 .four {
