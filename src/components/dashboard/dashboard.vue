@@ -187,13 +187,13 @@ export default {
 }
 
 .point,.multipleColumn,.columnChart,.line
-  height 100%
-  width 100%
-  background none
+  height 100%!important
+  width 100%!important
+  background none!important
   .main
-    width 100%
-    height calc(100% - 30px)
-    margin-top -15px
+    width 100%!important
+    height calc(100% - 30px)!important
+    margin-top -15px!important
 
 .item {
     padding: 0px;

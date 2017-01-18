@@ -1,7 +1,7 @@
 <!-- 折线图 -->
 <style lang="stylus" scoped>
 .multipleColumn
-  background url('../../assets/Bitmap.png') no-repeat!important
+  background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   .main
     width 100%
