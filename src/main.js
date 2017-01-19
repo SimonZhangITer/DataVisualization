@@ -6,15 +6,10 @@ import column from 'components/column/column'
 import funnel from 'components/funnel/funnel'
 import heat from 'components/heat/heat'
 import point from 'components/point/point'
+import line from 'components/line/line'
 import dashboard from 'components/dashboard/dashboard'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
-import axios from 'axios'
 
-const USER_NAME = 'elastic'
-const PSW = 'elasticl@ethical.cn'
-const AUTH_TOKEN = "Basic " + btoa(USER_NAME + ":" + PSW)
-
-axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
 Vue.use(VueRouer)
 Vue.use(Vuex)
 
@@ -22,8 +17,7 @@ const store = new Vuex.Store({
   state: {
     count: 0,
     color: ['#325B69', '#698570', '#AE5548', '#6D9EA8', '#9CC2B0', '#C98769']
-  },
-  multipleColumn: {}
+  }
 });
 const router = new VueRouer({
   routes: [{
@@ -44,6 +38,9 @@ const router = new VueRouer({
   }, {
     path: '/multipleColumn',
     component: multipleColumn
+  }, {
+    path: '/line',
+    component: line
   }],
   linkActiveClass: 'active'
 })

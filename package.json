@@ -12,11 +12,14 @@
   "dependencies": {
     "babel-runtime": "^6.9.0",
     "echarts": "^3.3.2",
+    "jquery": "^3.1.1",
+    "stylus": "^0.54.5",
     "vue": "^2.1.0",
     "vue-router": "^2.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
+    "axios": "^0.15.3",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.0.0",
@@ -42,6 +45,7 @@
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
+    "jquery": "^3.1.1",
     "json-loader": "^0.5.4",
     "opn": "^4.0.2",
     "ora": "^0.3.0",

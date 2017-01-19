@@ -51,7 +51,7 @@
     background #493F3D
     font-size 14px
     margin-top 22px
-    max-height 180px
+    /*max-height 180px*/
     overflow hidden
     z-index 9
     li
@@ -64,6 +64,10 @@
         position absolute
         display inline-block
         right 8px
+        overflow hidden 
+        white-space nowrap
+        text-overflow ellipsis
+        max-width 70px
 </style>
 <template lang="html" scoped>
   <div class="filter">
@@ -126,16 +130,17 @@ export default {
       this.option = this.myChart.getOption()
       this.resetOption = this._deepCopy(this.myChart.getOption())
       this._initProList()
-      $('.' + this.$parent.$el._prevClass + ' .startTime .myCalendar').calendar({
-        trigger: '.' + this.$parent.$el._prevClass + ' .startDate',
+      let _prevClass = this.$parent.$el._prevClass.split(' ')[0]
+      $('.' + _prevClass + ' .startTime .myCalendar').calendar({
+        trigger: '.' + _prevClass + ' .startDate',
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
           console.log(date)
         }
       })
-      $('.' + this.$parent.$el._prevClass + ' .endTime .myCalendar').calendar({
-        trigger: '.' + this.$parent.$el._prevClass + ' .endDate',
+      $('.' + _prevClass + ' .endTime .myCalendar').calendar({
+        trigger: '.' + _prevClass + ' .endDate',
         zIndex: 999,
         format: 'yyyy.MM.dd',
         onSelected: function(view, date, data) {
@@ -150,13 +155,13 @@ export default {
     },
     _initProList() {
       let arr = []
-      let parentClass = this.$parent.$el._prevClass
-      if (parentClass === 'multipleColumn' || parentClass === 'columnChart') {
+      let parentClass = this.$parent.$el._prevClass.split(' ')[0]
+      if (parentClass === 'multipleColumn' || parentClass === 'columnChart' || parentClass === 'line') {
         this.option.xAxis[0].data.forEach((pro, index) => {
           arr.push({
             name: pro,
-            selected: true,
-            data: this.option.series[index].data
+            selected: true
+              // data: this.option.series[index].data
           })
         })
         this.pro_list = arr
