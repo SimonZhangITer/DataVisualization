@@ -9,7 +9,7 @@ import point from 'components/point/point'
 import line from 'components/line/line'
 import dashboard from 'components/dashboard/dashboard'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
-
+// u
 Vue.use(VueRouer)
 Vue.use(Vuex)
 
