@@ -94,7 +94,6 @@ export default {
         nameLocation: 'end',
         nameGap: 20,
         nameRotate: 0,
-        interval: 2,
         axisTick: {
           show: false
         },

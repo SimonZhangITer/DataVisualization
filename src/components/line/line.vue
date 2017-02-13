@@ -1,11 +1,13 @@
 <!-- 层叠柱状图 -->
 <style lang="stylus" scoped>
 .line
-  height 800px
+  height 1000px
   background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   .main
-    height 400px
+    width 100%
+    height calc(100% - 100px)
+    margin-top -15px
 </style>
 
 <template>

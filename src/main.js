@@ -9,7 +9,10 @@ import point from 'components/point/point'
 import line from 'components/line/line'
 import dashboard from 'components/dashboard/dashboard'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
-// u
+import {DatePicker} from 'element-ui'
+
+Vue.component(DatePicker.name, DatePicker)
+
 Vue.use(VueRouer)
 Vue.use(Vuex)
 

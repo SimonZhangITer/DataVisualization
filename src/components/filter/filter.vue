@@ -1,4 +1,4 @@
-<style lang="stylus" scoped>
+<style lang="stylus">
 .filter
   position relative
   display flex
@@ -10,7 +10,7 @@
   .myCalendar
     left auto!important
   input
-    background none
+    background transparent
     border none
     color white
   .timeText
@@ -21,6 +21,8 @@
   .endTime
     display inline-block
     padding-left 42px
+  .el-date-editor
+    width 55%
   .products
     position absolute
     display inline-block
@@ -58,50 +60,59 @@
       height 36px
       line-height 36px
       border-bottom 1px solid rgba(255, 255, 255, 0.1)
+      &:last-child
+       border none
       .v-checkbox
         left 8px
       .name
         position absolute
         display inline-block
         right 8px
-        overflow hidden 
+        overflow hidden
         white-space nowrap
         text-overflow ellipsis
-        max-width 70px
+        width 70px
 </style>
 <template lang="html" scoped>
   <div class="filter">
     <div class="startTime">
       <span class="timeText">起始时间</span>
-      <input type="text" class="startDate" :value="startDate">
+      <el-date-picker
+        v-model="startDate"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
       <div class="myCalendar"></div>
     </div>
     <div class="endTime">
       <span class="timeText">截止时间</span>
-      <input type="text" class="endDate" :value="endDate">
+      <el-date-picker
+        v-model="endDate"
+        type="date"
+        placeholder="选择日期">
+      </el-date-picker>
       <div class="myCalendar"></div>
     </div>
-    <div class="products">
-      <div class="all" @click="selectAll()" v-show="pro_filter_flag">
-        <checkbox :isChecked="selectAll_flag"></checkbox>
-        全选
+    <div class="product-wrapper" v-show="showProduct">
+      <div class="products">
+        <div class="all" @click="selectAll()" v-show="pro_filter_flag">
+          <checkbox :isChecked="selectAll_flag"></checkbox>
+          全选
+        </div>
+        <div class="pro" @click="showProPane()">
+          产品<i class="arrow"></i>
+        </div>
       </div>
-      <div class="pro" @click="showProPane()">
-        产品<i class="arrow"></i>
+      <div class="pro_list" v-show="pro_filter_flag">
+        <ul>
+          <li v-for="(pro,index) in pro_list" @click="pro_toggle(pro,index)"><checkbox :isChecked="pro.selected"></checkbox><span class="name">{{pro.name}}</span></li>
+        </ul>
       </div>
-    </div>
-    <div class="pro_list" v-show="pro_filter_flag">
-      <ul>
-        <li v-for="(pro,index) in pro_list" @click="pro_toggle(pro,index)"><checkbox :isChecked="pro.selected"></checkbox><span class="name">{{pro.name}}</span></li>
-      </ul>
     </div>
   </div>
 </template>
 
 <script>
-import $ from 'jquery'
-import './assets/calendar.js'
-import './assets/calendar.css'
 import checkbox from 'components/checkbox/checkbox'
 
 export default {
@@ -119,7 +130,10 @@ export default {
       selectAll_flag: true,
       pro_list: [],
       option: {},
-      resetOption: {} // 存储最开始的数据,
+      resetOption: {}, // 存储最开始的数据,
+      preClass: '',
+      showProduct: false,
+      showTime: false
     }
   },
   mounted() {
@@ -127,41 +141,19 @@ export default {
   },
   methods: {
     _init() {
+      this.prevClass = this.$parent.$el._prevClass
       this.option = this.myChart.getOption()
       this.resetOption = this._deepCopy(this.myChart.getOption())
       this._initProList()
-      let _prevClass = this.$parent.$el._prevClass.split(' ')[0]
-      $('.' + _prevClass + ' .startTime .myCalendar').calendar({
-        trigger: '.' + _prevClass + ' .startDate',
-        zIndex: 999,
-        format: 'yyyy.MM.dd',
-        onSelected: function(view, date, data) {
-          console.log(date)
-        }
-      })
-      $('.' + _prevClass + ' .endTime .myCalendar').calendar({
-        trigger: '.' + _prevClass + ' .endDate',
-        zIndex: 999,
-        format: 'yyyy.MM.dd',
-        onSelected: function(view, date, data) {
-          // this.selectAll()
-          // this.redraw()
-          // setTimeout(() => {
-          //   this.selectAll()
-          //   this.redraw()
-          // }, 100)
-        }
-      })
     },
     _initProList() {
       let arr = []
-      let parentClass = this.$parent.$el._prevClass.split(' ')[0]
-      if (parentClass === 'multipleColumn' || parentClass === 'columnChart' || parentClass === 'line') {
+      if (this.prevClass !== 'point') {
+        this.showProduct = true
         this.option.xAxis[0].data.forEach((pro, index) => {
           arr.push({
             name: pro,
             selected: true
-              // data: this.option.series[index].data
           })
         })
         this.pro_list = arr

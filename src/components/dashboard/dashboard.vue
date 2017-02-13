@@ -1,16 +1,16 @@
 <template lang="html">
   <div class="dashboard">
-    <div class="flex-container column" id="direction">
-        <div class="item one" @click="clickChart('1')">
+    <div class="flex-container column">
+        <div class="item one" @click="clickChart('1')" style="transform: translate(-22.4%,-33.5%) scale(0.33)">
           <multipleColumn></multipleColumn>
         </div>
-        <div class="item two" @click="clickChart('2')">
+        <div class="item two" @click="clickChart('2')" style="transform: translate(-22.4%,0.5%) scale(0.33)">
           <column></column>
         </div>
-        <div class="item three" @click="clickChart('3')">
+        <div class="item three" @click="clickChart('3')" style="transform: translate(-22.4%,34.5%) scale(0.33)">
           <v-line></v-line>
         </div>
-        <div class="item four active" @click="clickChart('4')">
+        <div class="item four active" @click="clickChart('4')" style="transform: translate(43.7%, 0) scale(1)">
           <point></point>
         </div>
     </div>
@@ -23,24 +23,10 @@ import line from 'components/line/line'
 import multipleColumn from 'components/multipleColumn/multipleColumn'
 import point from 'components/point/point'
 
-const ACTIVE_STYLE = {
-  top: '0',
-  left: '30%',
-  marginLeft: '10px',
-  transform: 'scale(1)'
-}
-
-let NORMAL_STYLE = {
-  left: '-15.2%',
-  marginLeft: '0',
-  transform: 'scale(0.33)'
-}
-
 export default {
   data() {
     return {
-      items: [],
-      topArr: ['-33.5%', '0.5%', '34.5%', '0']
+      items: []
     }
   },
   mounted() {
@@ -53,13 +39,13 @@ export default {
       })
     },
     _init() {
-      this.items = document.querySelectorAll('.item')
-      this.items.forEach((item, index) => {
-        item.dataset.order = index + 1;
-      })
+      this.items = document.querySelectorAll('.flex-container .item')
+      for (let i = 0; i < this.items.length; i++) {
+        this.items[i].dataset.order = i + 1;
+      }
     },
     clickChart(clickIndex) {
-      let activeItem = document.querySelector('.active')
+      let activeItem = document.querySelector('.flex-container .active')
       let activeIndex = activeItem.dataset.order
       let clickItem = this.items[clickIndex - 1]
       if (activeIndex === clickIndex) {
@@ -67,16 +53,13 @@ export default {
       }
       activeItem.classList.remove('active')
       clickItem.classList.add('active')
-      NORMAL_STYLE.top = clickItem.style.top || this.topArr[clickIndex - 1]
-      this._setStyle(clickItem, ACTIVE_STYLE)
-      this._setStyle(activeItem, NORMAL_STYLE)
+      this._setStyle(clickItem, activeItem)
     },
-    _setStyle(el, style) {
-      for (let css in style) {
-        if (style.hasOwnProperty(css)) {
-          el.style[css] = style[css]
-        }
-      }
+    _setStyle(el1, el2) {
+      let transform1 = el1.style.transform
+      let transform2 = el2.style.transform
+      el1.style.transform = transform2
+      el2.style.transform = transform1
     }
   },
   components: {
@@ -90,17 +73,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-* {
-    box-sizing: border-box;
-}
-
-.point,.multipleColumn,.columnChart,.line{
+*
+  box-sizing: border-box;
+.point,.multipleColumn,.columnChart,.line
   height 100%!important
   width 100%!important
   background none!important
-}
-
-.item {
+.item
     padding: 0px;
     margin: 0px;
     width: 68%;
@@ -110,67 +89,25 @@ export default {
     text-align: center;
     transition:all 0.8s;
     background rgba(32, 32, 35, 0.2)
-}
-
-.dashboard {
+.dashboard
     position relative
     width 100%
     height 100%
-    background-color: black;
     margin:0px;
     padding:0px;
-    background url('../../assets/Bitmap.png') no-repeat;
-    background-size 100% 100%
     padding-top 5%
-}
-
-.flex-container.column {
+    background url('../../assets/Bitmap.png');
+    background-size 100% 100%
+.flex-container.column
     position relative
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
     height: 90%;
     width: 90%;
     overflow: hidden;
-    display: flex;
-    display: -webkit-flex;
     margin:  0 auto 100px auto;
     box-sizing: content-box;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-}
-
-.active {
+.active
     height 100%
     width: 69%;
-    flex-grow: 1;
-    flex-shrink:0;
     margin-left: 10px;
     line-height: 300px;
-    transform translate(43.7%, 0) scale(1)
-}
-
-.one {
-    top: -33.5%;
-    left: -15.2%;
-    /*transform translate()*/
-    order: 1;
-}
-
-.two {
-    top: 0.5%;
-    left: -15.2%;
-    order: 2;
-}
-
-.three {
-    top: 34.5%;
-    left: -15.2%;
-    order: 3;
-}
-
-.four {
-    order: 4
-}
 </style>
