@@ -18,7 +18,7 @@
 
 # 项目截图
 
-<div align=center><img src="https://static.oschina.net/uploads/space/2017/0214/162200_cHAf_2493500.png"></div>
+<div align=center><img src="https://github.com/SimonZhangITer/DataVisualization/blob/master/static/img/screenshot.png?raw=true"></div>
 
 # 开发
 
