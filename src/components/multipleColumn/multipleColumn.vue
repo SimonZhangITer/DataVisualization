@@ -47,14 +47,6 @@ export default {
       }.bind(this))
     }
   },
-  computed: {
-    chartInit() {
-      if (this.myChart.getOption) {
-        return true
-      }
-      return false
-    }
-  },
   components: {
     'v-header': header,
     'v-filter': filter
