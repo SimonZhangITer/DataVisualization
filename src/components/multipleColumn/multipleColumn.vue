@@ -1,12 +1,15 @@
 <!-- 折线图 -->
 <style lang="stylus" scoped>
 .multipleColumn
+  height 1000px
   background url('../../assets/Bitmap.png') no-repeat
   background-size 100% 100%
   .main
     width 100%
     height calc(100% - 100px)
+    margin-top -15px
 </style>
+
 
 <template>
 <div class="multipleColumn">

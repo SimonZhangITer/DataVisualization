@@ -7,7 +7,7 @@
   color white
   .main
     width 100%
-    height calc(100% - 30px)
+    height calc(100% - 100px)
     margin-top -15px
 </style>
 
