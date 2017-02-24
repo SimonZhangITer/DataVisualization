@@ -324,6 +324,6 @@ npm run build
 
 ## Donation
 
-If you find Element useful, you can buy me a cup of coffee
+If you find this project useful, you can buy me a cup of coffee
 
 <img width="650" src="https://static.oschina.net/uploads/space/2017/0223/201225_oQrz_2493500.jpeg" alt="">
