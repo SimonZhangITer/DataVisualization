@@ -2,7 +2,7 @@
 <style lang="stylus" scoped>
 .line
   height 1000px
-  background url('../../assets/Bitmap.png') no-repeat
+  background url('../../assets/bg.jpg') no-repeat
   background-size 100% 100%
   .main
     width 100%
@@ -30,7 +30,7 @@ export default {
       legendArr: [],
       color: this.$store.state.color,
       myChart: {},
-      name: '信使任务'
+      name: '折线图'
     }
   },
   methods: {
@@ -114,27 +114,27 @@ export default {
         }
       }],
       series: [{
-        name: '邮件营销',
+        name: '标签1',
         type: 'line',
         stack: '总量',
         data: [120, 132, 101, 134, 90, 230, 210]
       }, {
-        name: '联盟广告',
+        name: '标签2',
         type: 'line',
         stack: '总量',
         data: [220, 182, 191, 234, 290, 330, 310]
       }, {
-        name: '视频广告',
+        name: '标签3',
         type: 'line',
         stack: '总量',
         data: [150, 232, 201, 154, 190, 330, 410]
       }, {
-        name: '直接访问',
+        name: '标签4',
         type: 'line',
         stack: '总量',
         data: [320, 332, 301, 334, 390, 330, 320]
       }, {
-        name: '搜索引擎',
+        name: '标签5',
         type: 'line',
         stack: '总量',
         data: [820, 932, 901, 934, 1290, 1330, 1320]

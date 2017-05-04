@@ -2,7 +2,7 @@
 <style lang="stylus" scoped>
 .columnChart
   height 800px
-  background url('../../assets/Bitmap.png') no-repeat
+  background url('../../assets/bg.jpg') no-repeat
   background-size 100% 100%
   color white
   .main
@@ -31,7 +31,7 @@ export default {
       legendArr: [],
       color: this.$store.state.color,
       myChart: {},
-      name: '信使任务'
+      name: '柱状图'
     }
   },
   methods: {
@@ -115,37 +115,37 @@ export default {
         }
       }],
       series: [{
-        name: '预算拜访',
+        name: '标签1',
         type: 'bar',
         data: [2.0, 4.9],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '预算阅读',
+        name: '标签2',
         type: 'bar',
         data: [2.6, 5.9],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '预算调研',
+        name: '标签3',
         type: 'bar',
         data: [2.0, 6.4],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际拜访',
+        name: '标签4',
         type: 'bar',
         data: [4.0, 5.9],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际阅读',
+        name: '标签5',
         type: 'bar',
         data: [5.6, 4.9],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际调研',
+        name: '标签6',
         type: 'bar',
         data: [2.0, 3.4],
         barWidth: 16,

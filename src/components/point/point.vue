@@ -1,7 +1,7 @@
 <!-- 散点图 -->
 <style lang="stylus" scoped>
 .point
-  background url('../../assets/Bitmap.png') no-repeat
+  background url('../../assets/bg.jpg') no-repeat
   background-size 100% 100%
   .main
     height calc(100% - 120px)
@@ -121,7 +121,7 @@ export default {
             itemStyle: {
               normal: {
                 color: '#3c4247',
-                opacity: 0.25,
+                opacity: 0.6,
                 borderColor: 'rgba(255, 255, 255, 0.35)'
               },
               emphasis: {
@@ -130,7 +130,7 @@ export default {
             }
           },
           series: [{
-            name: '医院数量',
+            name: '标签1',
             type: 'scatter',
             coordinateSystem: 'geo',
             symbolSize: function(val) {
@@ -152,7 +152,7 @@ export default {
             },
             data: this.convertData(res.data)
           }, {
-            name: '拜访次数',
+            name: '标签2',
             type: 'scatter',
             coordinateSystem: 'geo',
             symbolSize: function(val) {
@@ -174,7 +174,7 @@ export default {
             },
             data: this.convertData(res.data)
           }, {
-            name: '信使人数',
+            name: '标签3',
             type: 'scatter',
             coordinateSystem: 'geo',
             symbolSize: function(val) {

@@ -2,7 +2,7 @@
 <style lang="stylus" scoped>
 .multipleColumn
   height 1000px
-  background url('../../assets/Bitmap.png') no-repeat
+  background url('../../assets/bg.jpg') no-repeat
   background-size 100% 100%
   .main
     width 100%
@@ -32,7 +32,7 @@ export default {
       color: this.$store.state.color,
       styleArr: [],
       myChart: {},
-      name: '产品详情'
+      name: '复杂柱状图'
     }
   },
   methods: {
@@ -116,43 +116,43 @@ export default {
         }
       }],
       series: [{
-        name: '预算拜访',
-        stack: '拜访',
+        name: '标签1',
+        stack: 'stack1',
         type: 'bar',
         data: [2.0, 4.9, 5.9, 3, 6],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '预算阅读',
-        stack: '阅读',
+        name: '标签2',
+        stack: 'stack2',
         type: 'bar',
         data: [2.6, 5.9, 3.6, 6, 8],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '预算调研',
-        stack: '调研',
+        name: '标签3',
+        stack: 'stack3',
         type: 'bar',
         data: [2.0, 6.4, 6.0, 4, 5],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际拜访',
-        stack: '拜访',
+        name: '标签4',
+        stack: 'stack1',
         type: 'bar',
         data: [4.0, 5.9, 3, 3, 6],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际阅读',
-        stack: '阅读',
+        name: '标签5',
+        stack: 'stack2',
         type: 'bar',
         data: [5.6, 4.9, 6, 5, 5],
         barWidth: 16,
         barGap: 0
       }, {
-        name: '实际调研',
-        stack: '调研',
+        name: '标签6',
+        stack: 'stack3',
         type: 'bar',
         data: [2.0, 3.4, 8],
         barWidth: 16,

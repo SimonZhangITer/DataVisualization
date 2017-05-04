@@ -88,7 +88,7 @@ export default {
     transform scale(0.33)
     text-align: center;
     transition:all 0.8s;
-    background rgba(32, 32, 35, 0.2)
+    background rgba(32, 32, 35, 0.5)
 .dashboard
     position relative
     width 100%
@@ -96,7 +96,7 @@ export default {
     margin:0px;
     padding:0px;
     padding-top 5%
-    background url('../../assets/Bitmap.png');
+    background url('../../assets/bg.jpg');
     background-size 100% 100%
 .flex-container.column
     position relative

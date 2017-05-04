@@ -1,8 +1,8 @@
 {
-  "name": "sell",
+  "name": "Dashboard",
   "version": "1.0.0",
-  "description": "sell app",
-  "author": "<zhangr@ethicall.cn>",
+  "description": "Charts Dashboard",
+  "author": "Simon Zhang<simonzhangr@foxmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",

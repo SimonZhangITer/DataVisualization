@@ -50,7 +50,7 @@
     right 22px
     width 102px
     text-align left
-    background #493F3D
+    background #1e3642
     font-size 14px
     margin-top 22px
     /*max-height 180px*/
