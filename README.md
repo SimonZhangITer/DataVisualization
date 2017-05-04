@@ -22,7 +22,7 @@
 
 # 项目截图
 
-<div align=center><img src="https://github.com/SimonZhangITer/DataVisualization/blob/master/static/img/demo.png?raw=true"></div>
+<div align=center><img src="https://github.com/SimonZhangITer/DataVisualization/blob/master/static/img/demo.jpg?raw=true"></div>
 
 # 开发
 
