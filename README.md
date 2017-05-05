@@ -142,9 +142,9 @@ transform: translate(-22.4%,0) scale(0.33)
 
 # 结语
 
-这个项目还是挺实用的一个项目，最大程度的运用了vue的组件化思想。
+这个项目还是挺实用的一个项目，较好的运用了vue的组件化思想。
 
-大家感兴趣的可以去看看，希望对大家有帮助。
+大家感兴趣的可以去看看代码，希望对大家有帮助。
 
 
 ## Build Setup
@@ -159,6 +159,15 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+## 交流
+
+欢迎热爱学习、忠于分享的胖友一起来交流
+
+- QQ：745913574
+
+- QQ群：149683643
+
+- WeChat: C.a.l.m
 
 ## Donation
 
