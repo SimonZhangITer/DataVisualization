@@ -167,7 +167,10 @@ npm run build
 
 - QQ群：149683643
 
-- WeChat: C.a.l.m
+- WeChat
+
+<img src="https://p0.meituan.net/dpgroup/749d8a79cd0a9bbc4e25b2f474a398d91256770.png?" width="25%">
+
 
 ## Donation
 
