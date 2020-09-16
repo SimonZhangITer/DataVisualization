@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
-    "axios": "^0.15.3",
+    "axios": "^0.20.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
